@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 
 // Register new user
 router.post('/register', async (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, email, password,role} = req.body;
 
     try {
         const userExists = await User.findOne({ email });
@@ -18,7 +18,8 @@ router.post('/register', async (req, res) => {
         const user = await User.create({
             name,
             email,
-            password
+            password,
+            role
         });
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
