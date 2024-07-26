@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const cors = require('cors')
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const { protect } = require('./middleware/authMiddleware');
@@ -9,6 +10,7 @@ const { protect } = require('./middleware/authMiddleware');
 dotenv.config();
 
 const app = express();
+app.use(cors());
 
 // Middleware
 // parse application/x-www-form-urlencoded
